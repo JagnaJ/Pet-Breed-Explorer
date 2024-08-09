@@ -20,11 +20,7 @@ const BreedPage = ({ params }: { params: { id: string } }) => {
           url = `https://api.thedogapi.com/v1/breeds/${id}`;
         }
 
-        const response = await fetch(url, {
-          headers: {
-            'x-api-key': 'live_saIQcFhW2OlnApiK9CogVyuqJm1yc5Yv8Pc3QF6hHZxDANo1e4En6CoJGc0cXlo1' 
-          }
-        });
+        const response = await fetch(url );
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
