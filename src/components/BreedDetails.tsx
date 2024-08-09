@@ -1,58 +1,28 @@
-'use client';
+import React from 'react';
 
-import { useEffect, useState } from 'react';
-import { fetchDogBreedById, fetchCatBreedById } from '@/services/api';
+interface BreedDetailsProps {
+  breed: {
+    id: string;
+    name: string;
+    image?: { url: string };
+    temperament?: string;
+    origin?: string;
+    life_span?: string;
+    // добавьте любые другие свойства, которые нужны
+  };
+}
 
-const BreedDetails = ({ id, isCat }: { id: string, isCat: boolean }) => {
-  const [breed, setBreed] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchBreed = async () => {
-      try {
-        let data: any;
-
-        if (isCat) {
-          data = await fetchCatBreedById(id);
-        } else {
-          data = await fetchDogBreedById(id);
-        }
-
-        if (data) {
-          setBreed(data);
-        } else {
-          setError('Breed not found');
-        }
-      } catch (error) {
-        setError('Error fetching breed');
-        console.error('Error fetching breed:', error);
-      }
-    };
-
-    fetchBreed();
-  }, [id, isCat]);
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  if (!breed) {
-    return <div>Loading...</div>;
-  }
+const BreedDetails: React.FC<BreedDetailsProps> = ({ breed }) => {
+  if (!breed) return <p>Breed not found</p>;
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">{breed.name}</h1>
-      <img
-        src={breed.image?.url || '/placeholder.jpg'}
-        alt={breed.name}
-        className="w-full h-48 object-cover rounded-md mb-4"
-      />
+    <div>
+      <h1 className="text-3xl font-bold mb-4">{breed.name}</h1>
+      {breed.image && <img src={breed.image.url} alt={breed.name} className="w-full h-auto rounded-md mb-4" />}
+      <p><strong>Temperament:</strong> {breed.temperament}</p>
       <p><strong>Origin:</strong> {breed.origin}</p>
       <p><strong>Life Span:</strong> {breed.life_span}</p>
-      <p><strong>Temperament:</strong> {breed.temperament}</p>
-      <p><strong>Height:</strong> {breed.height?.imperial} inches</p>
-      <p><strong>Weight:</strong> {breed.weight?.imperial} lbs</p>
+      {/* добавьте другие поля, если нужно */}
     </div>
   );
 };
