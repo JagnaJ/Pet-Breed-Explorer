@@ -1,43 +1,16 @@
-'use client'; 
+'use client';
 
 import { useEffect, useState } from 'react';
 import { fetchDogBreedById, fetchCatBreedById } from '@/services/api';
 
-const BreedPage = ({ params }: { params: { id: string } }) => {
+const BreedDetails = ({ id, isCat }: { id: string, isCat: boolean }) => {
   const [breed, setBreed] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
-  const [isCat, setIsCat] = useState<boolean | null>(null); 
-  const { id } = params;
-
-  useEffect(() => {
-    const checkIfCat = async () => {
-      try {
-        const response = await fetch(`https://api.thecatapi.com/v1/breeds/${id}`, {
-          headers: {
-            'x-api-key': process.env.NEXT_PUBLIC_CAT_API_KEY!,
-          },
-        });
-        if (response.ok) {
-          setIsCat(true);
-        } else {
-          setIsCat(false);
-        }
-      } catch (error) {
-        setIsCat(false); 
-      }
-    };
-
-    checkIfCat();
-  }, [id]);
 
   useEffect(() => {
     const fetchBreed = async () => {
       try {
         let data: any;
-
-        if (isCat === null) {
-          return; 
-        }
 
         if (isCat) {
           data = await fetchCatBreedById(id);
@@ -84,4 +57,4 @@ const BreedPage = ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default BreedPage;
+export default BreedDetails;
