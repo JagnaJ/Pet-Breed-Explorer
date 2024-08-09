@@ -1,58 +1,85 @@
-// src/app/breed/[id]/page.tsx
-
-"use client";
+'use client'; 
 
 import { useEffect, useState } from 'react';
+import { fetchDogBreedById, fetchCatBreedById } from '@/services/api';
 
 const BreedPage = ({ params }: { params: { id: string } }) => {
   const [breed, setBreed] = useState<any>(null);
-  const [imageError, setImageError] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isCat, setIsCat] = useState<boolean | null>(null); 
   const { id } = params;
+
+  useEffect(() => {
+    const checkIfCat = async () => {
+      try {
+        const response = await fetch(`https://api.thecatapi.com/v1/breeds/${id}`, {
+          headers: {
+            'x-api-key': process.env.NEXT_PUBLIC_CAT_API_KEY!,
+          },
+        });
+        if (response.ok) {
+          setIsCat(true);
+        } else {
+          setIsCat(false);
+        }
+      } catch (error) {
+        setIsCat(false); 
+      }
+    };
+
+    checkIfCat();
+  }, [id]);
 
   useEffect(() => {
     const fetchBreed = async () => {
       try {
-        let url: string;
+        let data: any;
 
-        if (id.startsWith('cat-')) {
-          url = `https://api.thecatapi.com/v1/breeds/${id}`;
+        if (isCat === null) {
+          return; 
+        }
+
+        if (isCat) {
+          data = await fetchCatBreedById(id);
         } else {
-          url = `https://api.thedogapi.com/v1/breeds/${id}`;
+          data = await fetchDogBreedById(id);
         }
 
-        const response = await fetch(url );
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+        if (data) {
+          setBreed(data);
+        } else {
+          setError('Breed not found');
         }
-
-        const data = await response.json();
-        setBreed(data);
       } catch (error) {
+        setError('Error fetching breed');
         console.error('Error fetching breed:', error);
       }
     };
 
     fetchBreed();
-  }, [id]);
+  }, [id, isCat]);
 
-  const handleImageError = () => {
-    setImageError(true);
-  };
+  if (error) {
+    return <div>{error}</div>;
+  }
 
-  if (!breed) return <div>Loading...</div>;
+  if (!breed) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div>
-      <h1>{breed.name}</h1>
-      <img 
-        src={imageError ? '/placeholder.jpg' : breed.image?.url} 
-        alt={breed.name} 
-        onError={handleImageError} 
-        style={{ maxWidth: '100%', height: 'auto' }} 
+    <div className="container mx-auto p-6">
+      <h1 className="text-3xl font-bold mb-6">{breed.name}</h1>
+      <img
+        src={breed.image?.url || '/placeholder.jpg'}
+        alt={breed.name}
+        className="w-full h-48 object-cover rounded-md mb-4"
       />
-      <p>{breed.bred_for || breed.temperament}</p>
-      <p>{breed.life_span}</p>
+      <p><strong>Origin:</strong> {breed.origin}</p>
+      <p><strong>Life Span:</strong> {breed.life_span}</p>
+      <p><strong>Temperament:</strong> {breed.temperament}</p>
+      <p><strong>Height:</strong> {breed.height?.imperial} inches</p>
+      <p><strong>Weight:</strong> {breed.weight?.imperial} lbs</p>
     </div>
   );
 };
