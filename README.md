@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pet Breed Explorer
 
-## Getting Started
+**Pet Breed Explorer** is a web application built with **Next.js**, **TypeScript**, and **Tailwind CSS**. It allows users to explore various breeds of cats and dogs through an intuitive interface. The app fetches breed data from The Dog API and The Cat API, displaying breed information and images in an engaging and user-friendly manner.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Frontend:** Next.js (14.2.5), TypeScript, Tailwind CSS
+- **APIs:** The Dog API (https://thedogapi.com) and The Cat API (https://thecatapi.com)
+- **State Management:** Redux Toolkit
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Homepage:** Displays a list of random dog and cat breeds with images and names.
+- **Breed Details Page:** Click on a breed to view detailed information and a gallery of images for that breed.
+- **State Management:** Uses **Redux Toolkit** for managing application state.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Installation
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the Repository:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```bash
+   git clone https://github.com/yourusername/pet-breed-explorer.git
+   cd pet-breed-explorer
