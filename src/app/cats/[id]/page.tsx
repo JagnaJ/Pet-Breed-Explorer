@@ -1,5 +1,3 @@
-'use client';
-
 import { notFound } from 'next/navigation';
 import { fetchCatBreedById } from '@/services/api';
 import BreedDetails from '@/components/BreedDetails';
