@@ -8,7 +8,6 @@ interface BreedDetailsProps {
     temperament?: string;
     origin?: string;
     life_span?: string;
-    // добавьте любые другие свойства, которые нужны
   };
 }
 
@@ -22,7 +21,6 @@ const BreedDetails: React.FC<BreedDetailsProps> = ({ breed }) => {
       <p><strong>Temperament:</strong> {breed.temperament}</p>
       <p><strong>Origin:</strong> {breed.origin}</p>
       <p><strong>Life Span:</strong> {breed.life_span}</p>
-      {/* добавьте другие поля, если нужно */}
     </div>
   );
 };
