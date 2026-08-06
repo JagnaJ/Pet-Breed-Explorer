@@ -5,7 +5,6 @@ export interface Breed {
   id: string;
   name: string;
   image?: { url: string };
-  // добавьте любые другие свойства, которые нужны
 }
 
 interface BreedsState {
@@ -21,7 +20,6 @@ const initialState: BreedsState = {
   loading: false,
 };
 
-// Async thunks для получения данных с API
 export const fetchBreeds = createAsyncThunk('breeds/fetchBreeds', async () => {
   const [dogBreeds, catBreeds] = await Promise.all([fetchDogBreeds(), fetchCatBreeds()]);
   return { dogBreeds, catBreeds };
