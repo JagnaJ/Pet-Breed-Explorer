@@ -1,4 +1,6 @@
-export async function fetchCatBreeds() {
+import { Breed } from '@/types/breed';
+
+export async function fetchCatBreeds(): Promise<Breed[]> {
   const response = await fetch('https://api.thecatapi.com/v1/breeds', {
     headers: {
       'x-api-key': process.env.NEXT_PUBLIC_CAT_API_KEY!,
@@ -10,7 +12,7 @@ export async function fetchCatBreeds() {
   return response.json();
 }
 
-export async function fetchCatBreedById(id: string) {
+export async function fetchCatBreedById(id: string): Promise<Breed> {
   const response = await fetch(`https://api.thecatapi.com/v1/breeds/${id}`, {
     headers: {
       'x-api-key': process.env.NEXT_PUBLIC_CAT_API_KEY!,
@@ -22,7 +24,7 @@ export async function fetchCatBreedById(id: string) {
   return response.json();
 }
 
-export async function fetchDogBreeds() {
+export async function fetchDogBreeds(): Promise<Breed[]> {
   const response = await fetch('https://api.thedogapi.com/v1/breeds', {
     headers: {
       'x-api-key': process.env.NEXT_PUBLIC_DOG_API_KEY!,
@@ -34,7 +36,7 @@ export async function fetchDogBreeds() {
   return response.json();
 }
 
-export async function fetchDogBreedById(id: string) {
+export async function fetchDogBreedById(id: string): Promise<Breed> {
   const response = await fetch(`https://api.thedogapi.com/v1/breeds/${id}`, {
     headers: {
       'x-api-key': process.env.NEXT_PUBLIC_DOG_API_KEY!,
