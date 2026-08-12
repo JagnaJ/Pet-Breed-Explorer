@@ -1,11 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchDogBreeds, fetchCatBreeds } from '@/services/api';
-
-export interface Breed {
-  id: string;
-  name: string;
-  image?: { url: string };
-}
+import { Breed } from '@/types/breed';
 
 interface BreedsState {
   dogBreeds: Breed[];
