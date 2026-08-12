@@ -2,10 +2,11 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { fetchDogBreeds, fetchCatBreeds } from '@/services/api';
+import { Breed } from '@/types/breed';
 
 const HomePage = () => {
-  const [dogBreeds, setDogBreeds] = useState([]);
-  const [catBreeds, setCatBreeds] = useState([]);
+  const [dogBreeds, setDogBreeds] = useState<Breed[]>([]);
+  const [catBreeds, setCatBreeds] = useState<Breed[]>([]);
 
   useEffect(() => {
     const loadBreeds = async () => {
@@ -28,7 +29,7 @@ const HomePage = () => {
         {dogBreeds.length > 0 && (
           <div>
             <h2 className="text-2xl font-semibold mb-4">Dog Breeds</h2>
-            {dogBreeds.map((breed: any) => (
+            {dogBreeds.map((breed) => (
               <Link key={breed.id} href={`/dogs/${breed.id}`} className="block border p-4 rounded-lg hover:shadow-lg transition-shadow">
                 <img
                   src={breed.image?.url || '/placeholder.jpg'}
@@ -43,7 +44,7 @@ const HomePage = () => {
         {catBreeds.length > 0 && (
           <div>
             <h2 className="text-2xl font-semibold mb-4">Cat Breeds</h2>
-            {catBreeds.map((breed: any) => (
+            {catBreeds.map((breed) => (
               <Link key={breed.id} href={`/cats/${breed.id}`} className="block border p-4 rounded-lg hover:shadow-lg transition-shadow">
                 <img
                   src={breed.image?.url || '/placeholder.jpg'}
