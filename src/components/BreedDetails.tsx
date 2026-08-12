@@ -1,35 +1,35 @@
 import React from 'react';
 
-import {Breed} from '../types/breed';
+import { Breed } from '../types/breed';
 
 interface BreedDetailsProps {
-    breed: Breed;
+  breed: Breed;
 }
 
-const BreedDetails: React.FC<BreedDetailsProps> = ({breed}) => {
-    if (!breed) return <p>Breed not found</p>;
+const BreedDetails: React.FC<BreedDetailsProps> = ({ breed }) => {
+  if (!breed) return <p>Breed not found</p>;
 
-    return (
-        <div>
-            <h1 className='text-3xl font-bold mb-4'>{breed.name}</h1>
-            {breed.image && (
-                <img
-                    src={breed.image.url}
-                    alt={breed.name}
-                    className='w-full h-auto rounded-md mb-4'
-                />
-            )}
-            <p>
-                <strong>Temperament:</strong> {breed.temperament}
-            </p>
-            <p>
-                <strong>Origin:</strong> {breed.origin}
-            </p>
-            <p>
-                <strong>Life Span:</strong> {breed.life_span}
-            </p>
-        </div>
-    );
+  return (
+    <div>
+      <h1 className="text-3xl font-bold mb-4">{breed.name}</h1>
+      {breed.image && (
+        <img
+          src={breed.image.url}
+          alt={breed.name}
+          className="w-full h-auto rounded-md mb-4"
+        />
+      )}
+      <p>
+        <strong>Temperament:</strong> {breed.temperament}
+      </p>
+      <p>
+        <strong>Origin:</strong> {breed.origin}
+      </p>
+      <p>
+        <strong>Life Span:</strong> {breed.life_span}
+      </p>
+    </div>
+  );
 };
 
 export default BreedDetails;
