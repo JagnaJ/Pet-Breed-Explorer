@@ -11,8 +11,10 @@ const HomePage = () => {
   useEffect(() => {
     const loadBreeds = async () => {
       try {
-        const dogs = await fetchDogBreeds();
-        const cats = await fetchCatBreeds();
+        const [dogs, cats] = await Promise.all([
+          fetchDogBreeds(),
+          fetchCatBreeds(),
+        ]);
         setDogBreeds(dogs);
         setCatBreeds(cats);
       } catch (error) {
