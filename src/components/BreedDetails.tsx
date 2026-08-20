@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Breed } from '../types/breed';
+import { Breed } from '@/types/breed';
 
 interface BreedDetailsProps {
   breed: Breed;
