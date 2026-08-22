@@ -7,6 +7,7 @@ import { Breed } from '@/types/breed';
 const HomePage = () => {
   const [dogBreeds, setDogBreeds] = useState<Breed[]>([]);
   const [catBreeds, setCatBreeds] = useState<Breed[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadBreeds = async () => {
@@ -15,14 +16,22 @@ const HomePage = () => {
           fetchDogBreeds(),
           fetchCatBreeds(),
         ]);
+
         setDogBreeds(dogs);
         setCatBreeds(cats);
       } catch (error) {
         console.error('Error loading breeds:', error);
+      } finally {
+        setLoading(false);
       }
     };
+
     loadBreeds();
   }, []);
+
+  if (loading) {
+  return <p className="p-6">Loading breeds...</p>;
+  }
 
   return (
     <div className="container mx-auto p-6">
