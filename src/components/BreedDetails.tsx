@@ -19,15 +19,23 @@ const BreedDetails: React.FC<BreedDetailsProps> = ({ breed }) => {
           className="w-full h-auto rounded-md mb-4"
         />
       )}
-      <p>
-        <strong>Temperament:</strong> {breed.temperament}
-      </p>
-      <p>
-        <strong>Origin:</strong> {breed.origin}
-      </p>
-      <p>
-        <strong>Life Span:</strong> {breed.life_span}
-      </p>
+      {breed.temperament && (
+        <p>
+          <strong>Temperament:</strong> {breed.temperament}
+        </p>
+      )}
+
+      {breed.origin && (
+        <p>
+          <strong>Origin:</strong> {breed.origin}
+        </p>
+      )}
+
+      {breed.life_span && (
+        <p>
+          <strong>Life Span:</strong> {breed.life_span}
+        </p>
+      )}
     </div>
   );
 };
