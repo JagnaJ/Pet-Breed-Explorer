@@ -14,7 +14,7 @@ const BreedDetails: React.FC<BreedDetailsProps> = ({ breed }) => {
       <h1 className="text-3xl font-bold mb-4">{breed.name}</h1>
       {breed.image && (
         <img
-          src={breed.image.url}
+          src={breed.image?.url || '/placeholder.jpg'}
           alt={breed.name}
           className="w-full h-auto rounded-md mb-4"
         />
