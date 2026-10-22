@@ -17,6 +17,9 @@ const BreedDetails: React.FC<BreedDetailsProps> = ({ breed }) => {
           src={breed.image?.url || '/placeholder.jpg'}
           alt={breed.name}
           className="w-full h-auto rounded-md mb-4"
+          onError={(event) => {
+            event.currentTarget.src = '/placeholder.jpg';
+          }}
         />
       )}
       {breed.temperament && (
