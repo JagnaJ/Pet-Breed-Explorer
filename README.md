@@ -6,7 +6,7 @@ The app uses The Dog API and The Cat API to display breed information and images
 
 ## Live Demo
 
-[View the application](https://pet-breed-explorer-derpnrd55-jagnajs-projects.vercel.app/)
+[View the application](https://pet-breed-explorer-silk.vercel.app/)
 
 ## Tech Stack
 
