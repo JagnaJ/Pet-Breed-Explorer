@@ -1,4 +1,4 @@
-'use client'; 
+'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { fetchDogBreeds, fetchCatBreeds } from '@/services/api';
@@ -8,6 +8,7 @@ const HomePage = () => {
   const [dogBreeds, setDogBreeds] = useState<Breed[]>([]);
   const [catBreeds, setCatBreeds] = useState<Breed[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const loadBreeds = async () => {
@@ -21,6 +22,7 @@ const HomePage = () => {
         setCatBreeds(cats);
       } catch (error) {
         console.error('Error loading breeds:', error);
+        setError('Failed to load breeds. Please try again later.');
       } finally {
         setLoading(false);
       }
@@ -30,7 +32,10 @@ const HomePage = () => {
   }, []);
 
   if (loading) {
-  return <p className="p-6">Loading breeds...</p>;
+    return <p className="p-6">Loading breeds...</p>;
+  }
+  if (error) {
+    return <p className="p-6">{error}</p>;
   }
 
   return (
