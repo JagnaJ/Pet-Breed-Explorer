@@ -1,8 +1,8 @@
 # Pet Breed Explorer
 
-Pet Breed Explorer is a web application for browsing dog and cat breeds.
+Pet Breed Explorer is a Next.js application for browsing dog and cat breeds and viewing detailed breed information.
 
-The app uses The Dog API and The Cat API to display breed information and images.
+The app uses The Dog API and The Cat API to load breed data and images.
 
 ## Live Demo
 
@@ -13,6 +13,7 @@ The app uses The Dog API and The Cat API to display breed information and images
 - Next.js
 - React
 - TypeScript
+- Redux Toolkit
 - Tailwind CSS
 - The Dog API
 - The Cat API
